@@ -1,13 +1,17 @@
+document.addEventListener("DOMContentLoaded", () => {
+
 const expenseName = document.getElementById("expenseName");
 const expenseAmount = document.getElementById("expenseAmount");
 const expenseList = document.getElementById("expenseList");
 const totalAmount = document.getElementById("totalAmount");
 const addBtn = document.getElementById("addExpenseBtn");
 
-const API_URL = "http://localhost:5000/expenses";
+const API_URL = "https://expense-tracker-backend-oqxi.onrender.com/expenses";
 
-// Load expenses when page loads
-window.addEventListener("DOMContentLoaded", () => {
+// Load expenses
+loadExpenses();
+
+function loadExpenses() {
     fetch(API_URL)
         .then(res => res.json())
         .then(data => {
@@ -21,14 +25,15 @@ window.addEventListener("DOMContentLoaded", () => {
 
             totalAmount.innerText = total;
         });
-});
+}
 
 // Add Expense
 addBtn.addEventListener("click", () => {
-    const name = expenseName.value;
-    const amount = expenseAmount.value;
 
-    if (name === "" || amount === "") {
+    const name = expenseName.value.trim();
+    const amount = expenseAmount.value.trim();
+
+    if (!name || !amount) {
         alert("Please enter valid details!");
         return;
     }
@@ -38,25 +43,22 @@ addBtn.addEventListener("click", () => {
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
             name: name,
-            amount: parseFloat(amount)
+            amount: parseFloat(amount),
+            paid: false
         })
     })
     .then(res => res.json())
-    .then(newExpense => {
-        createExpense(newExpense._id, newExpense.name, newExpense.amount, newExpense.paid);
+    .then(() => {
         expenseName.value = "";
         expenseAmount.value = "";
-        reloadTotal();
+        loadExpenses();
     });
 });
 
 function createExpense(id, name, amount, paid) {
 
     const li = document.createElement("li");
-
-    if (paid) {
-        li.classList.add("paid");
-    }
+    if (paid) li.classList.add("paid");
 
     const span = document.createElement("span");
     span.textContent = `${name} - ₹${amount}`;
@@ -76,19 +78,13 @@ function createExpense(id, name, amount, paid) {
             method: "PUT",
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify({ paid: !paid })
-        })
-        .then(() => {
-            li.classList.toggle("paid");
-        });
+        }).then(loadExpenses);
     });
 
     // Delete
     deleteBtn.addEventListener("click", () => {
         fetch(API_URL + "/" + id, { method: "DELETE" })
-        .then(() => {
-            expenseList.removeChild(li);
-            reloadTotal();
-        });
+        .then(loadExpenses);
     });
 
     // Edit
@@ -100,28 +96,72 @@ function createExpense(id, name, amount, paid) {
             method: "PUT",
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify({ amount: parseFloat(newAmount) })
-        })
-        .then(() => {
-            span.textContent = `${name} - ₹${newAmount}`;
-            reloadTotal();
-        });
+        }).then(loadExpenses);
     });
 
-    li.appendChild(span);
-    li.appendChild(paidBtn);
-    li.appendChild(editBtn);
-    li.appendChild(deleteBtn);
-
+    li.append(span, paidBtn, editBtn, deleteBtn);
     expenseList.appendChild(li);
 }
 
-// Reload Total
-function reloadTotal() {
-    fetch(API_URL)
-        .then(res => res.json())
-        .then(data => {
-            let total = 0;
-            data.forEach(exp => total += exp.amount);
-            totalAmount.innerText = total;
-        });
-}
+});
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
