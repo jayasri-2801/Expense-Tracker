@@ -151,17 +151,17 @@ li:hover{
 
 .actions button:nth-child(1){
     background:#22c55e;
-    color:white;
+    color:rgb(139, 5, 5);
 }
 
 .actions button:nth-child(2){
     background:#f59e0b;
-    color:white;
+    color:rgb(107, 34, 34);
 }
 
 .actions button:nth-child(3){
     background:#ef4444;
-    color:white;
+    color:rgb(110, 15, 15);
 }
 
 .actions button:hover{
