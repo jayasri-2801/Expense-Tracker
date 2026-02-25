@@ -111,9 +111,7 @@
 
 document.addEventListener("DOMContentLoaded", () => {
 
-    // const API_URL = "https://expense-tracker-back-hu6i.onrender.com/expenses";
-     const API_URL = "https://expense-tracker-psvu.onrender.com/expenses";
-
+    const API_URL = "https://expense-tracker-back-hu6i.onrender.com/expenses";
 
     const expenseName = document.getElementById("expenseName");
     const expenseAmount = document.getElementById("expenseAmount");
