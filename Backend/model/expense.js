@@ -6,8 +6,6 @@
 //     paid: { type: Boolean, default: false }
 // });
 
-// const Expense = mongoose.model("Expense", expenseSchema);
-
 const mongoose = require("mongoose");
 
 const expenseSchema = new mongoose.Schema({

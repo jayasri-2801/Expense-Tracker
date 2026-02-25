@@ -12,158 +12,100 @@ body{
     display:flex;
     justify-content:center;
     align-items:center;
-    background:#0f172a; /* Plain Dark Background */
+    background:#0f172a;
 }
 
-/* 🔥 Animated Gradient Border Effect */
 .container{
-    position:relative;
-    width:430px;
-    padding:35px;
-    border-radius:25px;
+    width:450px;
+    padding:30px;
+    border-radius:20px;
     background:#1e293b;
     color:white;
-    overflow:hidden;
 }
 
-/* Gradient Border Animation */
-.container::before{
-    content:"";
-    position:absolute;
-    inset:-3px;
-    border-radius:28px;
-    background:linear-gradient(
-        45deg,
-        #ff0000,
-        #ff9900,
-        #33ff00,
-        #00ffff,
-        #0066ff,
-        #cc00ff,
-        #ff0000
-    );
-    background-size:400%;
-    animation:borderGlow 6s linear infinite;
-    z-index:-1;
-}
-
-@keyframes borderGlow{
-    0%{background-position:0%}
-    100%{background-position:400%}
-}
-
-/* Title */
 h1{
     text-align:center;
-    margin-bottom:25px;
-    font-weight:600;
+    margin-bottom:20px;
 }
 
-/* Input Section */
 .input-section{
     display:flex;
     flex-direction:column;
-    gap:15px;
+    gap:10px;
     margin-bottom:20px;
 }
 
 input{
-    padding:14px;
-    border-radius:12px;
+    padding:12px;
     border:none;
-    background:#0f172a;
-    color:white;
-    transition:0.3s;
+    border-radius:8px;
 }
 
-input:focus{
-    outline:none;
-    box-shadow:0 0 10px #38bdf8;
-}
-
-/* Add Button */
-.input-section button{
-    padding:14px;
+button{
+    padding:12px;
     border:none;
-    border-radius:12px;
-    background:linear-gradient(45deg,#3b82f6,#9333ea);
-    color:white;
-    font-weight:600;
+    border-radius:8px;
     cursor:pointer;
-    transition:0.3s;
 }
 
-.input-section button:hover{
-    transform:scale(1.05);
-    box-shadow:0 5px 15px rgba(147,51,234,0.6);
+#addExpenseBtn{
+    background:#9333ea;
+    color:white;
 }
 
-/* Total */
-h2{
-    text-align:center;
+.summary{
     margin-bottom:15px;
 }
 
-/* Expense List */
 ul{
     list-style:none;
-    max-height:250px;
-    overflow-y:auto;
 }
 
 li{
     background:#0f172a;
-    padding:14px;
-    border-radius:15px;
-    margin-bottom:12px;
+    padding:12px;
+    border-radius:10px;
+    margin-bottom:10px;
     display:flex;
     justify-content:space-between;
     align-items:center;
-    transition:0.3s;
+    animation:fadeIn 0.4s ease-in-out;
 }
 
-li:hover{
-    transform:translateY(-3px);
-    background:#1e293b;
-}
-
-/* Paid */
 .paid{
     text-decoration:line-through;
     opacity:0.6;
-    background:#064e3b;
 }
 
-/* Buttons */
 .actions{
     display:flex;
-    gap:8px;
+    gap:5px;
 }
 
 .actions button{
-    padding:6px 10px;
+    padding:5px 10px;
     font-size:12px;
-    border-radius:8px;
-    border:none;
-    cursor:pointer;
-    transition:0.3s;
 }
 
+/* Paid */
 .actions button:nth-child(1){
-    background:#22c55e;
-    color:rgb(139, 5, 5);
+    background:#16a34a;
+    color:white;
 }
 
+/* Edit */
 .actions button:nth-child(2){
-    background:#f59e0b;
-    color:rgb(107, 34, 34);
+    background:#2563eb;
+    color:white;
 }
 
+/* Delete */
 .actions button:nth-child(3){
-    background:#ef4444;
-    color:rgb(110, 15, 15);
+    background:#dc2626;
+    color:white;
 }
 
-.actions button:hover{
-    transform:scale(1.1);
+@keyframes fadeIn{
+    from{opacity:0; transform:translateY(10px);}
+    to{opacity:1; transform:translateY(0);}
 }
