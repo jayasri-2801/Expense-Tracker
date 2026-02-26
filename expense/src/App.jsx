@@ -1,7 +1,8 @@
 import { useEffect, useState } from "react";
 import "./App.css";
 
-const API = "https://expense-tracker-back-hu6i.onrender.com/expenses";
+// const API = "https://expense-tracker-back-hu6i.onrender.com/expenses";
+  const API=   "https://expense-tracker-backend-oqxi.onrender.com"
 
 function App() {
   const [expenses, setExpenses] = useState([]);
